@@ -7,8 +7,8 @@
 #'
 #' @examples
 vcfR_to_012 <- function(vcf){
-  require::vcfR
-  vcf <- read.vcfR("vcf")
+  library(vcfR)
+  vcf <- read.vcfR(vcf)
   gt <- extract.gt(vcf, "GT")
   gt2a <- apply(gt,2, function(x) gsub("1[/|]1","2",x))
   gt2b <- gsub("0[/|]0","0",gt2a)
@@ -18,3 +18,4 @@ vcfR_to_012 <- function(vcf){
   vcf@gt <- gt
   return(vcf)
 }
+
