@@ -17,8 +17,6 @@ find_unique_GT_per_sample <- function(vcf_file) {
   gt <- extract.gt(vcf, "GT", return.alleles = TRUE)
 
   vcf <- vcf[which(!duplicated(gt)), ]
-  vcf
-
   gt <- extract.gt(vcf, "GT")
 
   gt2a <- apply(gt,2, function(x) gsub("1[/|]1","1",x))
@@ -37,7 +35,6 @@ find_unique_GT_per_sample <- function(vcf_file) {
 
   q <- gt[which(unlist(lapply(my_min_list, function(x) x == 1))), ]
   q <- data.frame(q, stringsAsFactors = FALSE)
-  #write.csv(q, output_csv, quote = TRUE)
 
   test <- q
   my_unique <- vector("list", length = nrow(test))
